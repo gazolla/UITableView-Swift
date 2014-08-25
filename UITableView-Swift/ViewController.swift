@@ -29,7 +29,7 @@ class ViewController: UIViewController ,UITableViewDelegate, UITableViewDataSour
         self.tableView!.delegate = self
         self.tableView!.dataSource = self
         self.tableView!.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        self.view?.addSubview(self.tableView)
+        self.view?.addSubview(self.tableView!)
     }
     
     func setupLeftBarButtonItem()
