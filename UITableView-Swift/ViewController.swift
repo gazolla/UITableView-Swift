@@ -41,14 +41,14 @@ class ViewController: UIViewController ,UITableViewDelegate, UITableViewDataSour
         self.leftButton!.tag = 100
         self.leftButton!.userInteractionEnabled = false
         self.leftButton?.addTarget(self, action: "leftBarButtonItemClicked", forControlEvents: UIControlEvents.TouchUpInside)
-        var barButtonItem = UIBarButtonItem(customView: self.leftButton)
-        self.navigationItem!.leftBarButtonItem = barButtonItem
+        var barButtonItem = UIBarButtonItem(customView: self.leftButton!)
+        self.navigationItem.leftBarButtonItem = barButtonItem
     }
     
     func setupRightBarButtonItem()
     {
         var barButtonItem = UIBarButtonItem(title: "Add", style: UIBarButtonItemStyle.Plain, target: self, action: "rightBarButtonItemClicked")
-        self.navigationItem!.rightBarButtonItem = barButtonItem
+        self.navigationItem.rightBarButtonItem = barButtonItem
     }
     
     func rightBarButtonItemClicked()
@@ -84,24 +84,24 @@ class ViewController: UIViewController ,UITableViewDelegate, UITableViewDataSour
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return self.items!.count
     }
     
-    func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell!
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let cell = tableView .dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
-        cell.textLabel.text = String(format: "%i", indexPath.row+1)
+        let cell = tableView .dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
+        cell.textLabel!.text = String(format: "%i", indexPath.row+1)
         return cell
     }
     
-    func tableView(tableView: UITableView!, canEditRowAtIndexPath indexPath: NSIndexPath!) -> Bool
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
     {
         return true
     }
     
-    func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!)
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
     {
         self.items?.removeObjectAtIndex(indexPath.row)
     
@@ -113,23 +113,23 @@ class ViewController: UIViewController ,UITableViewDelegate, UITableViewDataSour
        
     }
     
-     func tableView(tableView: UITableView!, editingStyleForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCellEditingStyle
+     func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle
     {
         return (UITableViewCellEditingStyle.Delete)
     }
     
-    func tableView(tableView: UITableView!, canMoveRowAtIndexPath indexPath: NSIndexPath!) -> Bool
+    func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool
     {
          return true
     }
     
-    func tableView(tableView: UITableView!, moveRowAtIndexPath sourceIndexPath: NSIndexPath!, toIndexPath destinationIndexPath: NSIndexPath!)
+    func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath)
     {
         self.tableView?.moveRowAtIndexPath(sourceIndexPath, toIndexPath: destinationIndexPath)
         self.items?.exchangeObjectAtIndex(sourceIndexPath.row, withObjectAtIndex: destinationIndexPath.row)
     }
     
-    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!)
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         println("row = %d",indexPath.row)
     }
