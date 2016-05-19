@@ -22,16 +22,13 @@ class ViewController: UIViewController
     }()
 
     lazy var leftButton:UIBarButtonItem = {
-        [unowned self] in
         let barButtonItem = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ViewController.leftBarButtonItemClicked))
         barButtonItem.tag = 100
         return barButtonItem
     }()
     
     lazy var rightButton:UIBarButtonItem = {
-        [unowned self] in
-        let barButtonItem = UIBarButtonItem(title: "Add", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ViewController.rightBarButtonItemClicked))
-        return barButtonItem
+        return UIBarButtonItem(title: "Add", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ViewController.rightBarButtonItemClicked))
     }()
     
     override func viewDidLoad() {
@@ -43,8 +40,7 @@ class ViewController: UIViewController
     }
     
     func rightBarButtonItemClicked(){
-        let row = self.items.count
-        let indexPath = NSIndexPath(forRow:row,inSection:0)
+        let indexPath = NSIndexPath(forRow:self.items.count,inSection:0)
         self.items.append("1")
         self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Left)
     }
