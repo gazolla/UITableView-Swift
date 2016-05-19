@@ -22,13 +22,29 @@ class ViewController: UIViewController
     }()
 
     lazy var leftButton:UIBarButtonItem = {
-        let barButtonItem = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ViewController.leftBarButtonItemClicked))
+        let barButtonItem = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.Plain, handler: { (sender) in
+            if !self.items.isEmpty {
+                if (self.leftButton.tag == 100){
+                    self.tableView.setEditing(true, animated: true)
+                    self.leftButton.tag = 200
+                    self.leftButton.title = "Done"
+                } else {
+                    self.tableView.setEditing(false, animated: true)
+                    self.leftButton.tag = 100
+                    self.leftButton.title = "Edit"
+                }
+            }
+        })
         barButtonItem.tag = 100
         return barButtonItem
     }()
     
     lazy var rightButton:UIBarButtonItem = {
-        return UIBarButtonItem(title: "Add", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ViewController.rightBarButtonItemClicked))
+        return UIBarButtonItem(title: "Add", style: .Plain , handler: { (sender) in
+            let indexPath = NSIndexPath(forRow:self.items.count,inSection:0)
+            self.items.append("1")
+            self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Left)
+        })
     }()
     
     override func viewDidLoad() {
@@ -38,27 +54,6 @@ class ViewController: UIViewController
         self.navigationItem.rightBarButtonItem = self.rightButton
         self.navigationItem.leftBarButtonItem = self.leftButton
     }
-    
-    func rightBarButtonItemClicked(){
-        let indexPath = NSIndexPath(forRow:self.items.count,inSection:0)
-        self.items.append("1")
-        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Left)
-    }
-    
-    func leftBarButtonItemClicked(){
-        if !self.items.isEmpty {
-            if (self.leftButton.tag == 100){
-                self.tableView.setEditing(true, animated: true)
-                self.leftButton.tag = 200
-                self.leftButton.title = "Done"
-            } else {
-                self.tableView.setEditing(false, animated: true)
-                self.leftButton.tag = 100
-                self.leftButton.title = "Edit"
-            }
-        }
-    }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -104,5 +99,42 @@ extension ViewController:UITableViewDelegate, UITableViewDataSource {
         print("row = %d",indexPath.row)
     }
 
+}
+
+public typealias CKBarButtonHandler = (sender: UIBarButtonItem) -> Void
+private var associatedEventHandle: UInt8 = 0
+
+extension UIBarButtonItem {
+    
+    private var closuresWrapper: ClosureWrapper? {
+        get {
+            return objc_getAssociatedObject(self, &associatedEventHandle) as? ClosureWrapper
+        }
+        
+        set {
+            objc_setAssociatedObject(self, &associatedEventHandle, newValue,
+                                     objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+    
+    public convenience init(title:String, style: UIBarButtonItemStyle, handler: CKBarButtonHandler) {
+        self.init(title:title, style: style, target: nil, action: #selector(UIBarButtonItem.handleAction))
+        self.closuresWrapper = ClosureWrapper(handler: handler)
+        self.target = self
+    }
+    
+    @objc
+    private func handleAction() {
+        self.closuresWrapper?.handler(sender: self)
+    }
+}
+
+
+private final class ClosureWrapper {
+    private var handler: CKBarButtonHandler
+    
+    init(handler: CKBarButtonHandler) {
+        self.handler = handler
+    }
 }
 
