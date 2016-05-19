@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		088796CB1CED591900CDB5D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 088796C91CED591900CDB5D2 /* LaunchScreen.storyboard */; };
 		14CE5445193EB8D600356B6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CE5444193EB8D600356B6E /* AppDelegate.swift */; };
 		14CE5447193EB8D700356B6E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CE5446193EB8D700356B6E /* ViewController.swift */; };
 		14CE544C193EB8D700356B6E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14CE544B193EB8D700356B6E /* Images.xcassets */; };
@@ -24,6 +25,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		088796CA1CED591900CDB5D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		14CE543F193EB8D600356B6E /* UITableView-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UITableView-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		14CE5443193EB8D600356B6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14CE5444193EB8D600356B6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 		14CE5441193EB8D600356B6E /* UITableView-Swift */ = {
 			isa = PBXGroup;
 			children = (
+				088796C91CED591900CDB5D2 /* LaunchScreen.storyboard */,
 				14CE5444193EB8D600356B6E /* AppDelegate.swift */,
 				14CE5446193EB8D700356B6E /* ViewController.swift */,
 				14CE544B193EB8D700356B6E /* Images.xcassets */,
@@ -150,7 +153,9 @@
 		14CE5437193EB8D600356B6E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastSwiftMigration = 0730;
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = YANGReal;
 				TargetAttributes = {
 					14CE543E193EB8D600356B6E = {
@@ -187,6 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14CE544C193EB8D700356B6E /* Images.xcassets in Resources */,
+				088796CB1CED591900CDB5D2 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +233,17 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		088796C91CED591900CDB5D2 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				088796CA1CED591900CDB5D2 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		14CE5459193EB8D700356B6E /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -248,6 +265,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -312,6 +330,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "UITableView-Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gazapps.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -323,6 +342,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "UITableView-Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gazapps.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -342,6 +362,7 @@
 				INFOPLIST_FILE = "UITableView-SwiftTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wecantec.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
@@ -358,6 +379,7 @@
 				INFOPLIST_FILE = "UITableView-SwiftTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wecantec.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
